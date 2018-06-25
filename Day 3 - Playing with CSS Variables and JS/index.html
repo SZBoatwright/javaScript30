@@ -42,15 +42,27 @@
     </style>
     
     <script>
-        const inputs = document.querySelectorAll(".controls input");
+        // Round 1
+        // const inputs = document.querySelectorAll(".controls input");
+
+        // function handleUpdate() {
+        //     const suffix = this.dataset.sizing || '';
+        //     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        // }
+
+        // inputs.forEach(input => input.addEventListener("change", handleUpdate)); //runs the handleUpdate function for inputs whenever the input changes
+        // inputs.forEach(input => input.addEventListener("mousemove", handleUpdate)); //runs the handleUpdate function for inputs whenever the mouse moves
+
+        // Round 2
+        const INPUTS = document.querySelectorAll('.controls input')
 
         function handleUpdate() {
-            const suffix = this.dataset.sizing || '';
-            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+            const SUFFIX = this.dataset.sizing || '';
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + SUFFIX);
         }
 
-        inputs.forEach(input => input.addEventListener("change", handleUpdate)); //runs the handleUpdate function for inputs whenever the input changes
-        inputs.forEach(input => input.addEventListener("mousemove", handleUpdate)); //runs the handleUpdate function for inputs whenever the mouse moves
+        INPUTS.forEach(input => input.addEventListener('change', handleUpdate));
+        INPUTS.forEach(input => input.addEventListener('mousemove', handleUpdate));
 
     </script>
 
