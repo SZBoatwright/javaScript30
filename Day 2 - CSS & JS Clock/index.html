@@ -65,45 +65,76 @@
     </style>
 
     <script>
-        const secondHand = document.querySelector (".second-hand");
-        const secondSpace = document.querySelector (".seconds-space");
+        // Round 1
+        // const secondHand = document.querySelector (".second-hand");
+        // const secondSpace = document.querySelector (".seconds-space");
 
-        const minuteHand = document.querySelector (".minute-hand");
-        const minuteSpace = document.querySelector (".minutes-space");
+        // const minuteHand = document.querySelector (".minute-hand");
+        // const minuteSpace = document.querySelector (".minutes-space");
 
-        const hourHand = document.querySelector (".hour-hand");
-        const hourSpace = document.querySelector (".hours-space");
+        // const hourHand = document.querySelector (".hour-hand");
+        // const hourSpace = document.querySelector (".hours-space");
+
+        // function setDate() {
+        //     const now = new Date(); //gets the current date, including time
+
+        //     // Updates seconds hand
+        //     const seconds = now.getSeconds (); //gets the current seconds of the minute from the date
+        //     const secondsDegrees = ((seconds/60) * 360) + 90; //converts from seconds to degrees for the clock rotation. The +90 is to offset the initial rotation of 90 degrees in the CSS.
+        //     secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        //     secondSpace.innerHTML = seconds;
+
+        //     //Updates minutes hand
+        //     const minutes = now.getMinutes ();
+        //     const minutesDegrees = ((minutes/60) * 360) +90;
+        //     minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+        //     minuteSpace.innerHTML = minutes;
+
+        //     //Updates hour hand
+        //     const hours = now.getHours();
+        //     const hoursDegrees = ((hours/12) * 360) + 90; //Divide by 12 instead of 60 since there are 12 hours in the day
+        //     hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+        //     hourSpace.innerHTML = hours;
+
+
+        //     // Logs current time to console for dev purposes
+        //     console.log (hours + ":" + minutes + ":" + seconds); 
+        // }
+
+        // setInterval (setDate,1000);
+
+        // Round 2
+        const HOUR_HAND = document.querySelector('.hour-hand');
+        const MINUTE_HAND = document.querySelector('.minute-hand');
+        const SECOND_HAND = document.querySelector('.second-hand');
 
         function setDate() {
-            const now = new Date(); //gets the current date, including time
+            const NOW = new Date();
+            
+            // set hours
+            const HOURS = NOW.getHours();
+            const HOURS_DEGREES = (HOURS/60) * 360 + 90;
+            HOUR_HAND.style.transform = `rotate(${HOURS_DEGREES}deg)`
 
-            // Updates seconds hand
-            const seconds = now.getSeconds (); //gets the current seconds of the minute from the date
-            const secondsDegrees = ((seconds/60) * 360) + 90; //converts from seconds to degrees for the clock rotation. The +90 is to offset the initial rotation of 90 degrees in the CSS.
-            secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+            // set minutes
+            const MINUTES = NOW.getMinutes();
+            const MINUTES_DEGREES = (MINUTES/60) * 360 + 90;
+            MINUTE_HAND.style.transform = `rotate(${MINUTES_DEGREES}deg)`
 
-            secondSpace.innerHTML = seconds;
+            // set seconds 
+            const SECONDS = NOW.getSeconds();
+            const SECONDS_DEGREES = (SECONDS/60) * 360 + 90;
+            SECOND_HAND.style.transform = `rotate(${SECONDS_DEGREES}deg)`
 
-            //Updates minutes hand
-            const minutes = now.getMinutes ();
-            const minutesDegrees = ((minutes/60) * 360) +90;
-            minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-
-            minuteSpace.innerHTML = minutes;
-
-            //Updates hour hand
-            const hours = now.getHours();
-            const hoursDegrees = ((hours/12) * 360) + 90; //Divide by 12 instead of 60 since there are 12 hours in the day
-            hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
-
-            hourSpace.innerHTML = hours;
-
-
-            // Logs current time to console for dev purposes
-            console.log (hours + ":" + minutes + ":" + seconds); 
+            // log time to console
+            console.log(`The current time is ${HOURS}:${MINUTES}:${SECONDS}`);
         }
 
-        setInterval (setDate,1000);
+        setInterval(setDate, 1000);
+
     </script>
 
 </body>

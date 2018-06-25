@@ -1,4 +1,4 @@
 # javaScript30
-This is where I will upload all of my projects during the Javazscript 30 course.
+This is just where I'm storing my work on the Javascript30 course so I can work on it between computers. 
 
-NOTE: Sometimes I will include my JS code and styles within my html file. I realize this is not recomended, but with some smaller projects it's easier.
+If you'd like to try it for free go [here](https://javascript30.com/)
