@@ -31,18 +31,34 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-        const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
+        
+        // Take 1
+        // const fifteen = inventors.filter(inventor => inventor.year >= 1500 && inventor.year < 1600);
 
-        console.table(fifteen);
+        // console.table(fifteen);
+
+        // Take 2
+        const FIFTEEN = inventors.filter(inventor => inventor.year >=1500 && inventor.year < 1600) // <<< LOOK HOW SHORT THIS IF STATEMENT IS!!!
+
+        console.log('1 - inventors born in the 1500s:')
+        console.table(FIFTEEN);
 
     // Array.prototype.map() - takes in an array, does something with it, and returns a new array of the same length
     // 2. Give us an array of the inventors' first and last names
-        const fullNames = inventors.map (inventor => inventor.first + " " + inventor.last);
-        console.log (fullNames);
+
+        // Take 1
+        // const fullNames = inventors.map (inventor => inventor.first + " " + inventor.last);
+        // console.log (fullNames);
+
+        // Take 2
+        const FULL_NAMES = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
+        console.log('2 - give an array of first and last names:')
+        console.log(FULL_NAMES);
 
     // Array.prototype.sort() - moves entries up and down an array based on whether 1 or -1 is returned
     // 3. Sort the inventors by birthdate, oldest to youngest
 
+        // Take 1
         // LONG WAY
         // const ordered = inventors.sort (function(a, b) {
         //     if (a.year > b.year) {
@@ -53,22 +69,37 @@
         // })
 
         // SHORT WAY - ternerary operator (shorthand if statement)
-        const ordered = inventors.sort ((a,b) => a.year > b.year ? 1 : -1);
+        // const ordered = inventors.sort ((a,b) => a.year > b.year ? 1 : -1);
 
-        console.table (ordered);
+        // console.table (ordered);
+        
+        // Take 2
+        const ORDERED = inventors.sort((a,b) => a.year > b.year ? 1 : -1);
+        console.log('3 - sort inventors youngest to oldest:')
+        console.table(ORDERED);
 
     // Array.prototype.reduce() - allows you to build on to every item in the array
     // 4. How many years did all the inventors live?
-        const totalYears = inventors.reduce((total, inventor) => {
+
+        // Take 1
+        // const totalYears = inventors.reduce((total, inventor) => {
+        //     return total + (inventor.passed - inventor.year);
+        // }, 0);
+
+        // console.log (totalYears);
+
+        // Take 2
+        const TOTAL_YEARS = inventors.reduce((total, inventor) => {
             return total + (inventor.passed - inventor.year);
         }, 0);
 
-        console.log (totalYears);
+        console.log(`total years: ${TOTAL_YEARS}`);
 
     // 5. Sort the inventors by years lived
         
+        // Take 1
         // MY WAY
-        const oldest = inventors.sort ((a,b) => (a.passed - a.year) < (b.passed - b.year) ? 1 : -1);
+        // const oldest = inventors.sort ((a,b) => (a.passed - a.year) < (b.passed - b.year) ? 1 : -1);
 
         // INSTRUCTOR'S WAY
         // const oldest = inventors.sort (function(a,b) {
@@ -77,40 +108,86 @@
         //     return lastGuy > nextGuy ? -1 : 1;
         // })
 
-        console.table (oldest);
+        // console.table (oldest);
+
+        // Take 2
+        const OLDEST = inventors.sort(function(a,b){
+            const GUY1 = a.passed-a.year;
+            const GUY2 = b.passed-b.year;
+
+            return GUY1 < GUY2 ? 1 : -1;
+        })
+        console.log('5 - inventors oldest to youngest:')
+        console.table(OLDEST);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    
+        // Take 1
         // const category = document.querySelector (".mw-category"); //selects all of the entries on the wikipedia page
         // const links = Array.from (category.querySelectorAll("a")); // selects all of the links within those entries
         // const de = links
         //     .map(link => link.textContent) //pulls the text content from the links
         //     .filter(streetName => streetName.includes ("de")); //filters out all names without "de"
+
+        // Take 2
+        // const CATEGORY = document.querySelector('.mw-category');
+        // const LINKS = Array.from(CATEGORY.querySelectorAll('a'));
+        // const DE = LINKS
+        //     .map(link => link.textContent)
+        //     .filter(streetName => streetName.includes('de'));
   
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-        const alpha = people.sort(function(lastOne,nextOne) {
-            const [aLast, aFirst] = lastOne.split(", "); // makes two arrays, one of last name, another of first
-            const [bLast, bFirst] = nextOne.split(", ");
-            return aLast > bLast ? 1 : -1;
-        });
 
-        console.log (alpha);
+        // Take 1
+        // const alpha = people.sort(function(lastOne,nextOne) {
+        //     const [aLast, aFirst] = lastOne.split(", "); // makes two arrays, one of last name, another of first
+        //     const [bLast, bFirst] = nextOne.split(", ");
+        //     return aLast > bLast ? 1 : -1;
+        // });
+
+        // console.log (alpha);
+        
+        // Take 2
+        const ALPHA  = people.sort(function(lastOne, nextOne) {
+            const [aLast, aFirst] = lastOne.split(', ');
+            const [bLast, bFirst] = nextOne.split(', ');
+            return aLast > bLast ? -1 : 1;
+        })
+
+        console.log('7 - sort people alphabetically');
+        console.table(ALPHA);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
+
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
         
-        const transportation = data.reduce(function(obj, item) {
-            if(!obj[item]) {   //checks to see if there is an entry for the item yet
-                obj[item] = 0; //if there isn't, then one is created
-            }
-            obj[item]++;
-            return obj;
+    // Take 1
+    //     const transportation = data.reduce(function(obj, item) {
+    //         if(!obj[item]) {   //checks to see if there is an entry for the item yet
+    //             obj[item] = 0; //if there isn't, then one is created
+    //         }
+    //         obj[item]++;
+    //         return obj;
 
-        }, {}) //blank object to start off with
+    //     }, {}) //blank object to start off with
 
-        console.log (transportation);
+    //     console.log (transportation);
+
+    // Take 2
+    const TRANSPORTATION = data.reduce(function(obj, item) {
+        if (!obj[item]) {
+            obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+    }, {});
+
+    console.log('8 - sum of the instance of each item in the "data" array')
+    console.log(data);
+    console.table(TRANSPORTATION);
 
   </script>
 </body>
